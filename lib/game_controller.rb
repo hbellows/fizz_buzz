@@ -1,8 +1,16 @@
 class GameController
 
   def initialize(input)
-    @input = input
-    @output = ''
+    @input = input.split.map {|num| num.to_i}
+    @output = ""
+  end
+
+  def play_game(input)
+    input = @input
+    divisible_by_seven(input)
+    divisble_by_three(input)
+    divisible_by_five(input)
+    @output
   end
 
   def divisible_by_seven(input)
@@ -13,18 +21,19 @@ class GameController
     end
   end
 
-  def divisible_by_five(input)
+  def divisble_by_three(input)
+    # require "pry"; binding.pry
     input.map do |num|
-      if num % 5 == 0
-        @output << 'Buzz'
+      if num % 3 == 0
+        @output << 'Fizz'
       end
     end
   end
 
-  def divisble_by_three(input)
+  def divisible_by_five(input)
     input.map do |num|
-      if num % 3 == 0
-        @output << 'Fizz'
+      if num % 5 == 0
+        @output << 'Buzz'
       end
     end
   end
