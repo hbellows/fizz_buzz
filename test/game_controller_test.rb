@@ -10,31 +10,72 @@ class GameControllerTest < Minitest::Test
     assert_instance_of GameController, game
   end
 
-  def test_it_calculates_Fizz_result
-    input = (1..4)
+  def test_it_can_calculate_Super_result
+    # divisible by 7
+    # skip
+    input = (6..8)
     game = GameController.new(input)
 
-    assert_equal [1, 2, 'Fizz', 4], game.fizz(input)
+    assert_equal ['Super'], game.divisible_by_seven(input)
   end
 
-  def test_it_calculates_Buzz_result
-    input = (1..6)
+  def test_it_can_calculate_Buzz_result
+    # divisible by 5
+    skip
+    input = (5)
     game = GameController.new(input)
 
-    result = 1, 2, 3, 4, 'Buzz', 6
-    assert_equal result, game.buzz(input)
+
+    assert_equal 'Buzz', game.divisible_by_five(input)
   end
 
-  def test_it_calculates_Super_result
-    input = (1..8)
+  def test_it_can_calculate_Fizz_result
+    # divisible by 3
+    skip
+    input = (3)
     game = GameController.new(input)
 
-    result = 1, 2, 3, 4, 5, 6, 'Super', 8
-    assert_equal result, game.super_(input)
+    assert_equal 'Fizz', game.divisble_by_three(input)
   end
 
-  def test_it_calculates_FizzBuzz_result
+  def test_it_can_calculate_SuperFizzBuzz_result
+    # divisible by 7, 5, 3
+    skip
+    input = (104..106)
+    game = GameController.new(input)
+
+    result = 104, 'SuperFizzBuzz', 106
+    assert_equal result, game.find_super_fizz_buzz(input)
+  end
+
+  def test_it_can_calculate_SuperFizz_result
+    # divisible by 7, 3
+    skip
+    input = (20..22)
+    game = GameController.new(input)
+
+    result = 20, 'SuperFizz', 22
+    assert_equal result, game.find_super_fizz(input)
+  end
+
+  def test_it_can_calculate_SuperBuzz_result
+    # divisible by 7, 5
+    skip
+    input = (34..36)
+    game = GameController.new(input)
+
+    result = 34, 'SuperBuzz', 36
+    assert_equal result, game.find_super_buzz(input)
+  end
+
+  def test_it_can_calculate_FizzBuzz_result
+    # divisible by 5, 3
+    skip
     input = (14..16)
     game = GameController.new(input)
+
+    result = 14, 'FizzBuzz', 16
+   assert_equal result, game.find_fizz_buzz(input)
   end
+
 end
