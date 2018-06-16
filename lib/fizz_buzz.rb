@@ -1,15 +1,19 @@
 require './lib/game_controller'
 class FizzBuzz
 
-  def play_game#(input)
+  def output_range
     input = gets.chomp.split
     range = (input[0]..input[1]).map(&:to_i)
     game = GameController.new(range)
   end
 
+  def output
+
+  end
+
 end
 fb = FizzBuzz.new
-fb.play_game
+fb.output_range
 
 # ----------------------------------
 # def game
