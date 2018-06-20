@@ -5,11 +5,12 @@ require './lib/game_controller.rb'
 
 class FizzBuzzTest < Minitest::Test
 
-  def test_it_can_play_Super_Fizz_Buzz
-    input = (1..8)
-    fizz_buzz = FizzBuzz.new(input)
+  def test_it_can_calculate_single_digit
 
-    result = 1, 2, 'Fizz', 3, 4, 'Buzz', 'Fizz', 'Super', 8
-    assert_equal result, fizz_buzz.play_game(input)
   end
+
+  def test_it_can_calculate_range_of_digits
+    
+  end
+
 end
