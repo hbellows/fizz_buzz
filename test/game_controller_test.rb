@@ -69,7 +69,7 @@ class GameControllerTest < Minitest::Test
   end
 
   def test_it_can_calculate_FizzBuzz_result # divisible by 3, 5
-    skip
+    # skip
     input = [15]
     game = GameController.new(input)
 
@@ -83,7 +83,6 @@ class GameControllerTest < Minitest::Test
 
     result = ['SuperFizzBuzz', '106', '107', 'Fizz']
     assert_equal result, game.output_range(input[0], input[1])
-
   end
 
 end
