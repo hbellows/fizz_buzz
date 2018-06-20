@@ -6,8 +6,8 @@ class GameController
 
   def initialize(input)
     @input = input
-    @converted_num = ""
     @result = []
+    @converted_range = []
   end
 
   def output(input)
@@ -22,10 +22,10 @@ class GameController
     range.to_a.map do |number|
       @input = number.to_s.split.map {|n| n.to_i}
         play_game
-
-      # require "pry"; binding.pry
+        @converted_range << @result.join
+        @result.clear
     end
-    @result
+    @converted_range
   end
 
   def play_game
@@ -63,11 +63,9 @@ class GameController
     @input.each do |number|
       if number % 7 != 0 && number % 3 != 0 && number % 5 != 0
         @result << number.to_s
-        # @result << @converted_num
       end
+      @result
     end.flatten.join
-    # require "pry"; binding.pry
-    # @converted_num
   end
 
 end
