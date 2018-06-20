@@ -1,32 +1,14 @@
 require './lib/game_controller'
-class FizzBuzz
 
-  def output_range
-    input = gets.chomp.split
-    range = (input[0]..input[1]).map(&:to_i)
-    game = GameController.new(range)
+
+  puts "Please enter a number, or a range of numbers:"
+  print '> '
+  user_input = gets.chomp
+  input = user_input.split.map {|num| num.to_i}
+  game = GameController.new(input)
+
+  if input.length == 1
+    puts "Here are your results: \n #{game.output(input)}"
+  else
+    puts "Here are your results: \n #{game.output_range(input[0], input[1])}"
   end
-
-  def output
-
-  end
-
-end
-fb = FizzBuzz.new
-fb.output_range
-
-# ----------------------------------
-# def game
-#   1000.times do |num|
-#   fizz_buzz = FizzBuzz.new(num)
-#   fizz_buzz.start
-# end
-# ----------------------------------
-# numbers = @input
-# fizzy = game.find_fizz(range)
-# buzzy = game.find_buzz(fizzy)
-# supery = game.find_super(buzzy)
-# fizzy_buzzy = game.find_fizz_buzz(supery)
-# super_buzzy = game.find_super_buzz(fizzy_buzzy)
-# super_fizzy = game.find_super_fizz(super_buzzy)
-# super_fizzy_buzzy = game.find_super_fizz_buzz(super_fizzy)
