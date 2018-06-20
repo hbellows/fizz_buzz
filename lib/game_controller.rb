@@ -1,101 +1,73 @@
+# require './lib/fizz_buzz'
+
 class GameController
 
+  attr_reader :input
+
   def initialize(input)
-    @input = input.split.map {|num| num.to_i}
-    @output = ""
+    @input = input
+    @converted_num = ""
+    @result = []
   end
 
-  def play_game(input)
-    input = @input
-    divisible_by_seven(input)
-    divisble_by_three(input)
-    divisible_by_five(input)
-    @output
-  end
-
-  def divisible_by_seven(input)
+  def output(input)
     input.map do |num|
-      if num % 7 == 0
-        @output << 'Super'
-      end
+      play_game
     end
+    @result.join
   end
 
-  def divisble_by_three(input)
+  def output_range (starting, ending)
+    range = (starting..ending)
+    range.to_a.map do |number|
+      @input = number.to_s.split.map {|n| n.to_i}
+        play_game
+
+      # require "pry"; binding.pry
+    end
+    @result
+  end
+
+  def play_game
+    divisible_by_seven
+    divisble_by_three
+    divisible_by_five
+    no_conversion
+  end
+
+  def divisible_by_seven
+    @input.map do |number|
+      if number % 7 == 0
+        @result << 'Super'
+      end
+    end.flatten
+  end
+
+  def divisble_by_three
+    @input.map do |number|
+      if number % 3 == 0
+        @result << 'Fizz'
+      end
+    end.flatten
+  end
+
+  def divisible_by_five
+    @input.map do |number|
+      if number % 5 == 0
+        @result << 'Buzz'
+      end
+    end.flatten
+  end
+
+  def no_conversion
+    @input.each do |number|
+      if number % 7 != 0 && number % 3 != 0 && number % 5 != 0
+        @result << number.to_s
+        # @result << @converted_num
+      end
+    end.flatten.join
     # require "pry"; binding.pry
-    input.map do |num|
-      if num % 3 == 0
-        @output << 'Fizz'
-      end
-    end
+    # @converted_num
   end
 
-  def divisible_by_five(input)
-    input.map do |num|
-      if num % 5 == 0
-        @output << 'Buzz'
-      end
-    end
-  end
 end
-
-
-  # def find_fizz_buzz(supery)
-  #   # fizzy_buzzy =
-  #   supery.map do |num|
-  #     if num % 3 == 0 && num % 5 == 0
-  #       "FizzBuzz"
-  #     else
-  #       num
-  #     end
-  #   end
-  # end
-  #
-  # def find_super_buzz(fizzy_buzzy)
-  #   # super_buzzy =
-  #   fizzy_buzzy.map do |num|
-  #     if num % 5 == 0 && num % 7 == 0
-  #       "SuperBuzz"
-  #     else
-  #       num
-  #     end
-  #   end
-  # end
-  #
-  # def find_super_fizz(super_buzzy)
-  #   # super_fizzy =
-  #   super_buzzy.map do |num|
-  #     if num % 3 == 0 && num % 7 == 0
-  #       'SuperFizz'
-  #     else
-  #       num
-  #     end
-  #   end
-  # end
-  #
-  # def find_super_fizz_buzz(super_fizzy)
-  #   # super_fizzy_buzzy =
-  #   super_fizzy.map do |num|
-  #     if num % 3 == 0 && num % 5 == 0 && num % 7 == 0
-  #       'SuperFizzBuzz'
-  #     else
-  #       num
-  #     end
-  #   end
-  # end
-
-
-# A number has a corresponding output. The rules for determining the output are as follows:
-#
-# If it’s evenly divisible by 3, 5, and 7 the output is SuperFizzBuzz
-#   first instance of SuperFizzBuzz is 105
-# If it’s evenly divisible by 3 and 7 the output is SuperFizz
-#   first instance of SuperFizz is 21
-# If it’s evenly divisible by 5 and 7 the output is SuperBuzz
-#   fist instance of SuperBuzz is 35
-# If it’s evenly divisible by 3 and 5 the output is FizzBuzz
-#   first instance of FizzBuzz is 15
-# If it’s evenly divisible by 3, the output is Fizz
-# If it’s evenly divisible by 5, the output is Buzz
-# If it’s evenly divisible by 7, the output is Super
-# Otherwise the output is just the number
